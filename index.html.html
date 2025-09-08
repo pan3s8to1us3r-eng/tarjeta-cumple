@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Feliz cumple Bri</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ---- Tus estilos originales ---- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #fbe8ef;
+      font-family: 'Playfair Display', serif;
+      overflow: hidden;
+    }
+    .card {
+      position: relative;
+      width: 650px;
+      max-width: 95%;
+      padding: 50px 40px;
+      background: #fff;
+      border-radius: 20px;
+      border: 5px solid #f2cad0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      text-align: center;
+      z-index: 2;
+    }
+    .bow { 
+      width: 150px; 
+      margin: 0 auto 20px; 
+      display: block; }
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.2em;
+      color: #d45c8f;
+      margin-bottom: 20px;
+    }
+    p { font-size: 1.2em; color: #555; line-height: 1.6; margin-bottom: 10px; }
+    .photos { margin-top: 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+    .photos img {
+      width: 130px; height: 130px; object-fit: cover;
+      border-radius: 15px; border: 3px solid #f2cad0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .frog { position: absolute; animation: fall linear forwards; z-index: 1; pointer-events: none; }
+    @keyframes fall { 0% { transform: translateY(-10vh); opacity: 1; } 100% { transform: translateY(110vh); opacity: 0; } }
+    .music-btn {
+      position: absolute; bottom: 20px; right: 20px;
+      background: #d45c8f; color: white; border: none;
+      padding: 10px 20px; border-radius: 30px;
+      font-size: 1em; cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .music-btn:hover { background: #b94c7a; }
+  </style>
+</head>
+<body>
+  <!-- Página 1 -->
+  <div class="card" id="page1">
+    <img class="bow" src="C:\Users\USUARIO\OneDrive\Documentos\pagina\descarga.png" alt="Lazo decorativo" width="100" height="100">
+    <h1>¡Feliz cumple Brianna mailov de bromita!</h1>
+    <p id="typed"></p>
+    <p>Dos añitos más y nos vamos a lokear</p> 
+    <div class="photos">
+      <img src="C:\Users\USUARIO\OneDrive\Documentos\pagina\Imagen de WhatsApp 2025-09-07 a las 23.51.42_db6b1e4c.jpg" alt="Foto 1">
+      <img src="C:\Users\USUARIO\OneDrive\Documentos\pagina\Imagen de WhatsApp 2025-09-07 a las 23.51.57_664790b7.jpg" alt="Foto 2">
+      <img src="C:\Users\USUARIO\OneDrive\Documentos\pagina\Imagen de WhatsApp 2025-09-07 a las 23.52.11_7acadaa5.jpg" alt="Foto 3">
+    </div>
+    <br>
+    <button onclick="showPage2()">Tu bromita</button>
+  </div>
+
+  <!-- Página 2 oculta -->
+  <div class="card" id="page2" style="display:none;">
+    <h1>Ahora chi</h1>
+    <p>Espero que la estés pasando bonito</p>
+    <p>
+    Aunque estemos lejos, sé que siempre puedo contar contigo. 
+    Me has visto crecer y me apoyas en todo, eres más que una amiga, eres mi hermana mayor.  
+    Cada vez que vienes a Perú son de mis días más felices, porque casi siempre los paso contigo 
+    y me recuerdas lo lindo que es tener familia cerca.  
+    Gracias por ser parte de mi vida, por darme tu cariño y por hacerme sentir siempre acompañada.  
+    Te quiero mucho muchin muchote y espero siempre poder ser parte de tu vida
+    </p>
+    <p> Yo sé que todo lo que te propongas lo vas a cumplir, muak 💗</p>
+    <img src="C:\Users\USUARIO\OneDrive\Documentos\pagina\Imagen de WhatsApp 2025-09-07 a las 23.45.04_fbbc071b.jpg" width="200" style="border-radius:15px;">
+    <br><br>
+    <button onclick="goBack()">⬅️ Volver</button>
+  </div>
+
+  <!-- Música -->
+  <audio id="bg-music" loop>
+    <source src="Labios rotos.mp3" type="audio/mpeg">
+  </audio>
+  <button class="music-btn" onclick="toggleMusic()">Miusic</button>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script>
+    // Ranitas
+    function createFrog() {
+      const frog = document.createElement("div");
+      frog.classList.add("frog");
+      frog.textContent = "🐸";
+      frog.style.left = Math.random() * window.innerWidth + "px";
+      frog.style.animationDuration = (3 + Math.random() * 3) + "s";
+      frog.style.fontSize = (20 + Math.random() * 30) + "px";
+      document.body.appendChild(frog);
+      setTimeout(() => frog.remove(), 7000);
+    }
+    setInterval(() => { for (let i = 0; i < 3; i++) createFrog(); }, 700);
+
+    // Música
+    const music = document.getElementById("bg-music");
+    function toggleMusic() { music.paused ? music.play() : music.pause(); }
+
+    // Cambiar de página
+    function showPage2() {
+      document.getElementById("page1").style.display = "none";
+      document.getElementById("page2").style.display = "block";
+    }
+    function goBack() {
+      document.getElementById("page2").style.display = "none";
+      document.getElementById("page1").style.display = "block";
+    }
+
+    // Texto animado
+    const message = " 💋💋Para más años de gogogo y felicidad💋💋";
+    let i = 0;
+    function typeEffect(){
+      if(i < message.length){
+        document.getElementById("typed").textContent += message.charAt(i);
+        i++;
+        setTimeout(typeEffect, 80);
+      }
+    }
+
+    // Confeti
+    function throwConfetti() {
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#f2cad0', '#d45c8f', '#fff']
+      });
+    }
+
+    // Lanzar al cargar
+    window.onload = () => {
+      typeEffect();
+      throwConfetti();
+    };
+  </script>
+</body>
+</html>
